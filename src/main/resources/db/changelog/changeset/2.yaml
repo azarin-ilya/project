@@ -1,0 +1,75 @@
+databaseChangeLog:
+  - changeSet:
+      author: Azarin
+      id: changeset/2
+      changes:
+        - createSequence:
+            dataType: int
+            schemaName: public
+            incrementBy: 1
+            startValue: 1
+            sequenceName: client_seq
+            maxValue: 1000
+
+        - createTable:
+            tableName: clients
+            columns:
+              - column:
+                  name: id
+                  type: Integer
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: varchar(50)
+              - column:
+                  name: inn
+                  type: varchar(50)
+              - column:
+                  name: phone_number
+                  type: varchar(50)
+
+        - createTable:
+            tableName: client_addresses
+            columns:
+              - column:
+                  name: client_id
+                  type: Integer
+                  constraints:
+                    foreignKeyName: fk_client_addresses
+                    references: clients(id)
+              - column:
+                  name: region_code
+                  type: varchar(50)
+              - column:
+                  name: name_of_district
+                  type: varchar(50)
+              - column:
+                  name: name_of_settlement
+                  type: varchar(50)
+              - column:
+                  name: street
+                  type: varchar(50)
+              - column:
+                  name: house_number
+                  type: varchar(50)
+              - column:
+                  name: hull_number
+                  type: varchar(50)
+              - column:
+                  name: room_number
+                  type: varchar(50)
+
+        - addColumn:
+            tableName: orders
+            columns:
+              - column:
+                  name: client_id
+                  type: Integer
+                  constraints:
+                    foreignKeyName: fk_client_order
+                    references: clients(id)
+
+

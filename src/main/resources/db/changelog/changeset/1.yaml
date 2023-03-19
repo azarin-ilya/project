@@ -1,0 +1,37 @@
+databaseChangeLog:
+  - changeSet:
+      id: changeset/1
+      author: Azarin
+      changes:
+        - createTable:
+            tableName: orders
+            columns:
+              - column:
+                  name: id
+                  type: Integer
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: creation_date
+                  type: date
+              - column:
+                  name: product_name
+                  type: varchar(50)
+              - column:
+                  name: price
+                  type: varchar(50)
+
+        - createSequence:
+            dataType: int
+            schemaName: public
+            incrementBy: 1
+            startValue: 1
+            sequenceName: order_seq
+            maxValue: 1000
+
+
+
+
+
