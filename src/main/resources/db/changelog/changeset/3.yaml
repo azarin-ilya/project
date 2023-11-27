@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      author: Azarin
+      id: changeset/3
+      changes:
+        - createTable:
+            tableName: managers
+            columns:
+              - column:
+                  name: id
+                  type: Integer
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: varchar(50)
+              - column:
+                  name: surname
+                  type: varchar(50)
+
+
